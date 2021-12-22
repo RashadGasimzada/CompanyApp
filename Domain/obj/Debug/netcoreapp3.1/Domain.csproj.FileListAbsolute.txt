@@ -1,0 +1,10 @@
+C:\Users\Rashad\Desktop\My files\Code Academy\CompanyApp\Domain\bin\Debug\netcoreapp3.1\Domain.deps.json
+C:\Users\Rashad\Desktop\My files\Code Academy\CompanyApp\Domain\bin\Debug\netcoreapp3.1\Domain.dll
+C:\Users\Rashad\Desktop\My files\Code Academy\CompanyApp\Domain\bin\Debug\netcoreapp3.1\Domain.pdb
+C:\Users\Rashad\Desktop\My files\Code Academy\CompanyApp\Domain\obj\Debug\netcoreapp3.1\Domain.csproj.AssemblyReference.cache
+C:\Users\Rashad\Desktop\My files\Code Academy\CompanyApp\Domain\obj\Debug\netcoreapp3.1\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Rashad\Desktop\My files\Code Academy\CompanyApp\Domain\obj\Debug\netcoreapp3.1\Domain.AssemblyInfoInputs.cache
+C:\Users\Rashad\Desktop\My files\Code Academy\CompanyApp\Domain\obj\Debug\netcoreapp3.1\Domain.AssemblyInfo.cs
+C:\Users\Rashad\Desktop\My files\Code Academy\CompanyApp\Domain\obj\Debug\netcoreapp3.1\Domain.csproj.CoreCompileInputs.cache
+C:\Users\Rashad\Desktop\My files\Code Academy\CompanyApp\Domain\obj\Debug\netcoreapp3.1\Domain.dll
+C:\Users\Rashad\Desktop\My files\Code Academy\CompanyApp\Domain\obj\Debug\netcoreapp3.1\Domain.pdb
