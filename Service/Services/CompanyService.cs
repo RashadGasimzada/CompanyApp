@@ -33,12 +33,12 @@ namespace Service.Services
             throw new NotImplementedException();
         }
 
-        public Company GetById(Predicate<Company> filter)
+        public Company GetById(int id)
         {
-            throw new NotImplementedException();
+            return _companyRepository.GetById(m => m.Id == id);
         }
 
-        public Company GetByName(Predicate<Company> filter)
+        public Company GetByName(string name)
         {
             throw new NotImplementedException();
         }

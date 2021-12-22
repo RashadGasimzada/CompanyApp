@@ -10,8 +10,8 @@ namespace Service.Services.Interfaces
         Company Create(Company model);
         Company Update(int id, Company model);
         void Delete(Company model);
-        Company GetById(Predicate<Company> filter);
-        Company GetByName(Predicate<Company> filter);
+        Company GetById(int id);
+        Company GetByName(string name);
         List<Company> GetAll(Predicate<Company> filter);
     }
 }

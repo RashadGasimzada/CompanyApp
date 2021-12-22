@@ -40,16 +40,16 @@ namespace CompanyApp
                                 Name = companyName,
                                 Address = address,
                             };
-                            var result = companyService.Create(company);
+                            var createResult = companyService.Create(company);
 
-                            if (result != null)
+                            if (createResult != null)
                             {
-                                Helper.WriteToConsole(ConsoleColor.Green, $"{company.Name} company created");
+                                Helper.WriteToConsole(ConsoleColor.Green, $"{company.Id} - {company.Name} company created");
                             }
                             else
                             {
                                 Helper.WriteToConsole(ConsoleColor.Red, "Something get wrong");
-                                return;
+                                goto EnterOption;
                             }
                             break;
                         case 2:
@@ -57,6 +57,33 @@ namespace CompanyApp
                         case 3:
                             break;
                         case 4:
+                            Helper.WriteToConsole(ConsoleColor.Blue, "Add Company Id: ");
+                            EnterId:
+                            string companyId = Console.ReadLine();
+
+                            int id;
+
+                            bool isIdTrue = int.TryParse(companyId, out id);
+
+                            if (isIdTrue)
+                            {
+                                var idResult = companyService.GetById(id);
+
+                                if (idResult == null)
+                                {
+                                    Helper.WriteToConsole(ConsoleColor.Red, "Company not found, try id again");
+                                    goto EnterId;
+                                }
+                                else
+                                {
+                                    Helper.WriteToConsole(ConsoleColor.Green, $"{idResult.Id} - {idResult.Name} - {idResult.Address}");
+                                }
+                            }
+                            else
+                            {
+                                Helper.WriteToConsole(ConsoleColor.Red, "Try id again");
+                                goto EnterId;
+                            }
                             break;
                         case 5:
                             break;
