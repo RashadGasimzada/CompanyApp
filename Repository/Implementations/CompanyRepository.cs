@@ -53,7 +53,7 @@ namespace Repository.Implementations
 
         public List<Company> GetByName(Predicate<Company> filter = null)
         {
-            throw new NotImplementedException();
+            return filter == null ? AppDbContext<Company>.datas : AppDbContext<Company>.datas.FindAll(filter);
         }
 
         public bool Update(Company entity)

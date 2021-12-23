@@ -117,7 +117,15 @@ namespace CompanyApp.Controller
 
         public void GetByName()
         {
+            Helper.WriteToConsole(ConsoleColor.Blue, "Add Company Name: ");
+            string companyName = Console.ReadLine();
 
+            var companyNames = _companyServise.GetByName(companyName);
+
+            foreach (var item in companyNames)
+            {
+                Helper.WriteToConsole(ConsoleColor.Green, $"{item.Id} - {item.Name} - {item.Address}");
+            }
         }
 
         public void Update()

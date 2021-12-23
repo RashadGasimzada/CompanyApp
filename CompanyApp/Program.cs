@@ -11,6 +11,7 @@ namespace CompanyApp
         static void Main(string[] args)
         {
             CompanyController companyController = new CompanyController();
+            EmployeeController employeeController = new EmployeeController();
 
             Helper.WriteToConsole(ConsoleColor.Blue, "Select options: ");
 
@@ -42,11 +43,13 @@ namespace CompanyApp
                             companyController.GetById();
                             break;
                         case (int)MyEnums.Menus.GetCompaniesByName:
+                            companyController.GetByName();
                             break;
                         case (int)MyEnums.Menus.GetAllCompanies:
                             companyController.GetAll();
                             break;
                         case (int)MyEnums.Menus.CreateEmployee:
+                            employeeController.Create();
                             break;
                         case (int)MyEnums.Menus.UpdateEmployee:
                             break;
