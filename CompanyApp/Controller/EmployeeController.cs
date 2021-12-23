@@ -57,5 +57,69 @@ namespace CompanyApp.Controller
                 goto EnterOption;
             }
         }
+
+        public void GetById()
+        {
+            Helper.WriteToConsole(ConsoleColor.Blue, "Add Employee Id: ");
+            EnterId:
+            string employeeId = Console.ReadLine();
+
+            int id;
+
+            bool isIdTrue = int.TryParse(employeeId, out id);
+
+            if (isIdTrue)
+            {
+                var employee = _employeeServise.GetById(id);
+
+                if (employee == null)
+                {
+                    Helper.WriteToConsole(ConsoleColor.Red, "Employee not found, try id again");
+                    goto EnterId;
+                }
+                else
+                {
+                    Helper.WriteToConsole(ConsoleColor.Green, $"{employee.Id} - {employee.Name} - {employee.Surname} works in {employee.Company.Name}");
+                }
+            }
+            else
+            {
+                Helper.WriteToConsole(ConsoleColor.Red, "Try id again");
+                goto EnterId;
+            }
+        }
+
+        public void Delete()
+        {
+            Helper.WriteToConsole(ConsoleColor.Blue, "Add Employee Id: ");
+            EnterId:
+            string employeeId = Console.ReadLine();
+
+            int id;
+
+            bool isIdTrue = int.TryParse(employeeId, out id);
+
+            if (isIdTrue)
+            {
+                var employee = _employeeServise.GetById(id);
+
+                if (employee == null)
+                {
+                    Helper.WriteToConsole(ConsoleColor.Red, "Employee not found, try id again");
+                    goto EnterId;
+                }
+                else
+                {
+                    _employeeServise.Delete(employee);
+                    Helper.WriteToConsole(ConsoleColor.Green, "Employee is deleted");
+                }
+            }
+            else
+            {
+                Helper.WriteToConsole(ConsoleColor.Red, "Try id again");
+                goto EnterId;
+            }
+
+        }
     }
 }

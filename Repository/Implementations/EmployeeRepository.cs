@@ -30,7 +30,16 @@ namespace Repository.Implementations
 
         public bool Delete(Employee entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                AppDbContext<Employee>.datas.Remove(entity);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
         }
 
         public List<Employee> GetAll(Predicate<Employee> filter)
@@ -40,7 +49,7 @@ namespace Repository.Implementations
 
         public Employee GetById(Predicate<Employee> filter)
         {
-            throw new NotImplementedException();
+            return filter == null ? AppDbContext<Employee>.datas[0] : AppDbContext<Employee>.datas.Find(filter);
         }
 
         public List<Employee> GetByName(Predicate<Employee> filter)

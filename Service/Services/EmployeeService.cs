@@ -44,5 +44,10 @@ namespace Service.Services
         {
             _employeeRepository.Delete(employee);
         }
+
+        public Employee GetById(int id)
+        {
+            return _employeeRepository.GetById(m => m.Id == id);
+        }
     }
 }

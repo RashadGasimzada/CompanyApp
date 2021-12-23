@@ -9,5 +9,6 @@ namespace Service.Services.Interfaces
     {
         Employee Create(Employee model, int companyId);
         void Delete(Employee employee);
+        Employee GetById(int id);
     }
 }
