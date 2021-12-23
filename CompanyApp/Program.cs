@@ -33,6 +33,7 @@ namespace CompanyApp
                             companyController.Create();
                             break;
                         case (int)MyEnums.Menus.UpdateCompany:
+                            companyController.Update();
                             break;
                         case (int)MyEnums.Menus.DeleteCompany:
                             companyController.Delete();

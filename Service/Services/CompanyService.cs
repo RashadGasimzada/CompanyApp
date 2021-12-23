@@ -45,7 +45,10 @@ namespace Service.Services
 
         public Company Update(int id, Company model)
         {
-            throw new NotImplementedException();
+            var company = GetById(id);
+            model.Id = company.Id;
+            _companyRepository.Update(model);
+            return model;
         }
     }
 }

@@ -114,9 +114,42 @@ namespace CompanyApp.Controller
                 Helper.WriteToConsole(ConsoleColor.Green, $"{item.Id} - {item.Name} - {item.Address}");
             }
         }
+
         public void GetByName()
         {
 
+        }
+
+        public void Update()
+        {
+            Helper.WriteToConsole(ConsoleColor.Blue, "Add Company Id: ");
+            EnterId:
+            string companyId = Console.ReadLine();
+            Helper.WriteToConsole(ConsoleColor.Blue, "Add new Company Name: ");
+            string newName = Console.ReadLine();
+            Helper.WriteToConsole(ConsoleColor.Blue, "Add new Company Address: ");
+            string newAddress = Console.ReadLine();
+            int id;
+
+            bool isIdTrue = int.TryParse(companyId, out id);
+
+            if (isIdTrue)
+            {
+                Company company = new Company
+                {
+                    Name = newName,
+                    Address = newAddress,
+                };
+                var newCompany = _companyServise.Update(id, company);
+
+                Helper.WriteToConsole(ConsoleColor.Green, $"{newCompany.Id} - {newCompany.Name} - {newCompany   .Address}");
+
+            }
+            else
+            {
+                Helper.WriteToConsole(ConsoleColor.Red, "Try id again");
+                goto EnterId;
+            }
         }
     }
 }
