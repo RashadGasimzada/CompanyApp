@@ -11,7 +11,6 @@ namespace Repository.Interfaces
         bool Update(T entity);
         bool Delete(T entity);
         T GetById(Predicate<T> filter);
-        List<T> GetByName(Predicate<T> filter);
-        List<T> GetAll(Predicate<T> filter);
+
     }
 }

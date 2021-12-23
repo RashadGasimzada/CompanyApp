@@ -60,8 +60,10 @@ namespace CompanyApp
                             employeeController.GetById();
                             break;
                         case (int)MyEnums.Menus.GetEmployeesByAge:
+                            employeeController.GetByAge();
                             break;
                         case (int)MyEnums.Menus.GetAllEmployeesByCompanyId:
+                            employeeController.GetAllByCompanyId();
                             break;
                         case (int)MyEnums.Menus.ExitProgramm:
                             break;

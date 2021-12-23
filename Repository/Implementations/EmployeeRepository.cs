@@ -42,19 +42,19 @@ namespace Repository.Implementations
             }
         }
 
-        public List<Employee> GetAll(Predicate<Employee> filter)
-        {
-            throw new NotImplementedException();
-        }
-
         public Employee GetById(Predicate<Employee> filter)
         {
             return filter == null ? AppDbContext<Employee>.datas[0] : AppDbContext<Employee>.datas.Find(filter);
         }
 
-        public List<Employee> GetByName(Predicate<Employee> filter)
+        public List<Employee> GetByAge(Predicate<Employee> filter)
         {
-            throw new NotImplementedException();
+            return filter == null ? AppDbContext<Employee>.datas : AppDbContext<Employee>.datas.FindAll(filter);
+        }
+
+        public List<Employee> GetAllByCompanyId(Predicate<Employee> filter)
+        {
+            return filter == null ? AppDbContext<Employee>.datas : AppDbContext<Employee>.datas.FindAll(filter);
         }
 
         public bool Update(Employee entity)

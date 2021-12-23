@@ -49,5 +49,15 @@ namespace Service.Services
         {
             return _employeeRepository.GetById(m => m.Id == id);
         }
+
+        public List<Employee> GetByAge(int age)
+        {
+            return _employeeRepository.GetByAge(m => m.Age == age);
+        }
+
+        public List<Employee> GetAllByCompanyId(int companyId)
+        {
+            return _employeeRepository.GetAllByCompanyId(m=>m.Company.Id == companyId);
+        }
     }
 }

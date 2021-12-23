@@ -23,21 +23,29 @@ namespace CompanyApp.Controller
             Helper.WriteToConsole(ConsoleColor.Blue, "Add Company Address: ");
             string address = Console.ReadLine();
 
-            Company company = new Company
+            if (companyName == null || companyName == "" || address == null || address == "")
             {
-                Name = companyName,
-                Address = address,
-            };
-            var createResult = _companyServise.Create(company);
-
-            if (createResult != null)
-            {
-                Helper.WriteToConsole(ConsoleColor.Green, $"{company.Id} - {company.Name} company created");
+                Helper.WriteToConsole(ConsoleColor.Red, "Try again");
+                goto EnterOption;
             }
             else
             {
-                Helper.WriteToConsole(ConsoleColor.Red, "Something get wrong");
-                goto EnterOption;
+                Company company = new Company
+                {
+                    Name = companyName,
+                    Address = address,
+                };
+                var createResult = _companyServise.Create(company);
+
+                if (createResult != null)
+                {
+                    Helper.WriteToConsole(ConsoleColor.Green, $"{company.Id} - {company.Name} company created");
+                }
+                else
+                {
+                    Helper.WriteToConsole(ConsoleColor.Red, "Something get wrong");
+                    goto EnterOption;
+                }
             }
         }
 

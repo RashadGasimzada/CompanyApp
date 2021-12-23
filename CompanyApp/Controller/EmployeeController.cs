@@ -14,6 +14,7 @@ namespace CompanyApp.Controller
         public EmployeeController()
         {
             _employeeServise = new EmployeeService();
+            
         }
 
         public void Create()
@@ -120,6 +121,48 @@ namespace CompanyApp.Controller
                 goto EnterId;
             }
 
+        }
+
+        public void GetByAge()
+        {
+            Helper.WriteToConsole(ConsoleColor.Blue, "Add Employee Age: ");
+            EnterAge:
+            string employeeAge = Console.ReadLine();
+            int age;
+            bool isTrueAge = int.TryParse(employeeAge, out age);
+
+            if(isTrueAge)
+            {
+                var employeeAges = _employeeServise.GetByAge(age);
+
+                foreach (var item in employeeAges)
+                {
+                    Helper.WriteToConsole(ConsoleColor.Green, $"{item.Id} - {item.Name} - {item.Surname} works in {item.Company.Name}");
+                }
+            }
+            else
+            {
+                Helper.WriteToConsole(ConsoleColor.Red, "Employee not found, try age again");
+                goto EnterAge;
+            }
+            
+        }
+
+        public void GetAllByCompanyId()
+        {
+            Helper.WriteToConsole(ConsoleColor.Blue, "Add Company Id: ");
+            string companyId = Console.ReadLine();
+            int id;
+            bool isTrueId = int.TryParse(companyId, out id);
+            if(isTrueId)
+            {
+                var companysId = _employeeServise.GetAllByCompanyId(id);
+                foreach (var item in companysId)
+                {                    
+                    Helper.WriteToConsole(ConsoleColor.Green, $"{item.Id} - {item.Name} - {item.Surname}");
+                    
+                }
+            }
         }
     }
 }
