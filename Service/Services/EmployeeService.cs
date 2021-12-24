@@ -59,5 +59,14 @@ namespace Service.Services
         {
             return _employeeRepository.GetAllByCompanyId(m=>m.Company.Id == companyId);
         }
+
+        public Employee Update(int id, Employee model, Company company)
+        {
+            var employee = GetById(id);
+            model.Company = company;
+            model.Id = employee.Id;
+            _employeeRepository.Update(model, company);
+            return model;
+        }
     }
 }

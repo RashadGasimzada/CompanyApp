@@ -187,7 +187,7 @@ namespace CompanyApp.Controller
                     };
                     var newCompany = _companyServise.Update(id, company);
 
-                    Helper.WriteToConsole(ConsoleColor.Green, $"{newCompany.Id} - {newCompany.Name} - {newCompany.Address}");
+                    Helper.WriteToConsole(ConsoleColor.Green, $"{newCompany.Id} - {newCompany.Name} in {newCompany.Address} updated");
                 }
                 
 

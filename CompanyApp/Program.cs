@@ -52,6 +52,7 @@ namespace CompanyApp
                             employeeController.Create();
                             break;
                         case (int)MyEnums.Menus.UpdateEmployee:
+                            employeeController.Update();
                             break;
                         case (int)MyEnums.Menus.DeleteEmployee:
                             employeeController.Delete();
@@ -66,15 +67,18 @@ namespace CompanyApp
                             employeeController.GetAllByCompanyId();
                             break;
                         case (int)MyEnums.Menus.ExitProgramm:
-                            break;
+                            goto Exit;
                     }
                 }
                 else
                 {
+                    Helper.WriteToConsole(ConsoleColor.Red, "Check correct option");
                     goto EnterOption;
-                }
+                }                
             }
-            
+            Exit:
+            Helper.WriteToConsole(ConsoleColor.Green, "Programm is exit");
+
         }
         private static void ShowMenus()
         {

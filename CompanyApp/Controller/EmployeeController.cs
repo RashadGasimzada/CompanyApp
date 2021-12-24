@@ -10,10 +10,12 @@ namespace CompanyApp.Controller
     public class EmployeeController
     {
         private EmployeeService _employeeServise { get; }
+        private CompanyService _companyServise { get; }
 
         public EmployeeController()
         {
             _employeeServise = new EmployeeService();
+            _companyServise = new CompanyService();
             
         }
 
@@ -180,6 +182,69 @@ namespace CompanyApp.Controller
                 Helper.WriteToConsole(ConsoleColor.Red, "Employee not found, try id again");
                 goto EnterCompanyId;
             }
+        }
+
+        public void Update()
+        {
+            Helper.WriteToConsole(ConsoleColor.Blue, "Add Employee Id: ");
+            EnterId:
+            string employeeId = Console.ReadLine();
+            Helper.WriteToConsole(ConsoleColor.Blue, "Add new Employee Name: ");
+            EnterName:
+            string newName = Console.ReadLine();
+            Helper.WriteToConsole(ConsoleColor.Blue, "Add new Employee Surname: ");
+            string newSurname = Console.ReadLine();
+            Helper.WriteToConsole(ConsoleColor.Blue, "Add new Employee Age: ");
+            string newAge = Console.ReadLine();
+            Helper.WriteToConsole(ConsoleColor.Blue, "Add Company Id: ");
+            string newCompanyId = Console.ReadLine();
+
+            int companyId;
+            int id;
+            int age;
+
+            bool isIdTrue = int.TryParse(employeeId, out id);
+            bool isAgeTrue = int.TryParse(newAge, out age);
+            bool isCompanyIdTrue = int.TryParse(newCompanyId, out companyId);
+
+
+            if (isIdTrue && isAgeTrue && isCompanyIdTrue)
+            {
+                if (string.IsNullOrEmpty(newName) || string.IsNullOrEmpty(newSurname))
+                {
+                    Helper.WriteToConsole(ConsoleColor.Red, "Try Name and Address again");
+                    goto EnterName;
+                }
+                else
+                {
+                    var newCompany = _companyServise.GetById(companyId);
+
+                    if (newCompany == null)
+                    {
+                        Helper.WriteToConsole(ConsoleColor.Red, "Company not found, try id again");
+                        goto EnterId;
+                    }
+                    else
+                    {
+                        Employee employee = new Employee
+                        {
+                            Name = newName,
+                            Surname = newSurname,
+                            Age = age,
+                            Company = newCompany,
+
+                        };
+                        var newEmployee = _employeeServise.Update(id, employee, newCompany);
+
+                        Helper.WriteToConsole(ConsoleColor.Green, $"{newEmployee.Id} - {newEmployee.Name} - {newEmployee.Surname} works in {newEmployee.Company.Name} updated");
+                    }                                       
+                }
+            }
+            else
+            {
+                Helper.WriteToConsole(ConsoleColor.Red, "Try id again");
+                goto EnterId;
+            }          
         }
     }
 }
