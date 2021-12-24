@@ -23,7 +23,7 @@ namespace CompanyApp.Controller
             Helper.WriteToConsole(ConsoleColor.Blue, "Add Company Address: ");
             string address = Console.ReadLine();
 
-            if (companyName == null || companyName == "" || address == null || address == "")
+            if (string.IsNullOrWhiteSpace(companyName) || string.IsNullOrWhiteSpace(address))
             {
                 Helper.WriteToConsole(ConsoleColor.Red, "Try again");
                 goto EnterOption;
@@ -39,7 +39,7 @@ namespace CompanyApp.Controller
 
                 if (createResult != null)
                 {
-                    Helper.WriteToConsole(ConsoleColor.Green, $"{company.Id} - {company.Name} company created");
+                    Helper.WriteToConsole(ConsoleColor.Green, $"{company.Id} - {company.Name} company in {company.Address} created");
                 }
                 else
                 {
@@ -126,14 +126,34 @@ namespace CompanyApp.Controller
         public void GetByName()
         {
             Helper.WriteToConsole(ConsoleColor.Blue, "Add Company Name: ");
+            EnterCompanyName:
             string companyName = Console.ReadLine();
 
-            var companyNames = _companyServise.GetByName(companyName);
+            
+            if (string.IsNullOrWhiteSpace(companyName)) {
 
-            foreach (var item in companyNames)
-            {
-                Helper.WriteToConsole(ConsoleColor.Green, $"{item.Id} - {item.Name} - {item.Address}");
+                Helper.WriteToConsole(ConsoleColor.Red, "Try Company Name again");
+                goto EnterCompanyName;
             }
+            else
+            {
+                var companyNames = _companyServise.GetAll();
+                foreach (var item in companyNames)
+                {
+                    if (item.Name != companyName )
+                    {
+                        Helper.WriteToConsole(ConsoleColor.Red, "Company not found try again");
+                        goto EnterCompanyName;
+                        
+                    }
+                    else
+                    {
+                        Helper.WriteToConsole(ConsoleColor.Green, $"{item.Id} - {item.Name} - {item.Address}");
+                    }
+                }
+            }
+
+            
         }
 
         public void Update()
@@ -142,23 +162,34 @@ namespace CompanyApp.Controller
             EnterId:
             string companyId = Console.ReadLine();
             Helper.WriteToConsole(ConsoleColor.Blue, "Add new Company Name: ");
+            EnterName:
             string newName = Console.ReadLine();
             Helper.WriteToConsole(ConsoleColor.Blue, "Add new Company Address: ");
             string newAddress = Console.ReadLine();
             int id;
 
             bool isIdTrue = int.TryParse(companyId, out id);
-
+          
+           
             if (isIdTrue)
             {
-                Company company = new Company
+                if (string.IsNullOrEmpty(newName) || string.IsNullOrEmpty(newAddress))
                 {
-                    Name = newName,
-                    Address = newAddress,
-                };
-                var newCompany = _companyServise.Update(id, company);
+                    Helper.WriteToConsole(ConsoleColor.Red, "Try Name and Address again");
+                    goto EnterName;
+                }
+                else
+                {
+                    Company company = new Company
+                    {
+                        Name = newName,
+                        Address = newAddress,
+                    };
+                    var newCompany = _companyServise.Update(id, company);
 
-                Helper.WriteToConsole(ConsoleColor.Green, $"{newCompany.Id} - {newCompany.Name} - {newCompany   .Address}");
+                    Helper.WriteToConsole(ConsoleColor.Green, $"{newCompany.Id} - {newCompany.Name} - {newCompany.Address}");
+                }
+                
 
             }
             else
@@ -166,6 +197,8 @@ namespace CompanyApp.Controller
                 Helper.WriteToConsole(ConsoleColor.Red, "Try id again");
                 goto EnterId;
             }
+            
+            
         }
     }
 }

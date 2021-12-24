@@ -38,11 +38,6 @@ namespace Service.Services
             return _companyRepository.GetById(m => m.Id == id);
         }
 
-        public List<Company> GetByName(string name)
-        {
-            return _companyRepository.GetAll(m => m.Name == name);
-        }
-
         public Company Update(int id, Company model)
         {
             var company = GetById(id);

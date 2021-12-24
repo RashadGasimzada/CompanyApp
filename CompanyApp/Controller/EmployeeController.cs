@@ -32,25 +32,35 @@ namespace CompanyApp.Controller
             string Id = Console.ReadLine();
             int companyId;
             bool isTrueId = int.TryParse(Id, out companyId);
-            if (isTrueAge && isTrueId) {
-                Employee employee = new Employee
+            if (isTrueAge && isTrueId) 
+            {
+                if (string.IsNullOrWhiteSpace(employeeName) || string.IsNullOrWhiteSpace(employeeSurname)) 
                 {
-                    Name = employeeName,
-                    Surname = employeeSurname,
-                    Age = employeeAge,
-    
-                };
-                var createResult = _employeeServise.Create(employee,companyId);
-
-                if (createResult != null)
-                {
-                    Helper.WriteToConsole(ConsoleColor.Green, $"{employee.Id} - {employee.Name} - {employee.Surname} employee in {employee.Company.Name} created");
+                    Helper.WriteToConsole(ConsoleColor.Red, "Try again");
+                    goto EnterOption;
                 }
                 else
                 {
-                    Helper.WriteToConsole(ConsoleColor.Red, "Company not found");
-                    goto EnterOption;
+                    Employee employee = new Employee
+                    {
+                        Name = employeeName,
+                        Surname = employeeSurname,
+                        Age = employeeAge,
+
+                    };
+                    var createResult = _employeeServise.Create(employee, companyId);
+
+                    if (createResult != null)
+                    {
+                        Helper.WriteToConsole(ConsoleColor.Green, $"{employee.Id} - {employee.Name} - {employee.Surname} employee in {employee.Company.Name} created");
+                    }
+                    else
+                    {
+                        Helper.WriteToConsole(ConsoleColor.Red, "Company not found");
+                        goto EnterOption;
+                    }
                 }
+                
             }
             else
             {
@@ -150,18 +160,25 @@ namespace CompanyApp.Controller
 
         public void GetAllByCompanyId()
         {
+            EnterCompanyId:
             Helper.WriteToConsole(ConsoleColor.Blue, "Add Company Id: ");
             string companyId = Console.ReadLine();
             int id;
             bool isTrueId = int.TryParse(companyId, out id);
+
             if(isTrueId)
             {
                 var companysId = _employeeServise.GetAllByCompanyId(id);
+
                 foreach (var item in companysId)
-                {                    
+                {
                     Helper.WriteToConsole(ConsoleColor.Green, $"{item.Id} - {item.Name} - {item.Surname}");
-                    
-                }
+                }                
+            }
+            else
+            {
+                Helper.WriteToConsole(ConsoleColor.Red, "Employee not found, try id again");
+                goto EnterCompanyId;
             }
         }
     }

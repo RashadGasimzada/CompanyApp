@@ -51,38 +51,9 @@ namespace Repository.Implementations
             return filter == null ? AppDbContext<Company>.datas : AppDbContext<Company>.datas.FindAll(filter);
         }
 
-        public List<Company> GetByName(Predicate<Company> filter = null)
-        {
-            return filter == null ? AppDbContext<Company>.datas : AppDbContext<Company>.datas.FindAll(filter);
-        }
-
         public bool Update(Company entity)
         {
-            try
-            {
-                var company = GetById(m => m.Id == entity.Id);
-
-                if (company != null)
-                {
-                    if(!string.IsNullOrEmpty(entity.Name))
-                        company.Name = entity.Name;
-
-                    if(!string.IsNullOrEmpty(entity.Address))
-                        company.Address = entity.Address;
-
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-
-                return false;
-            }
+            throw new NotImplementedException;
            
         }
     }
