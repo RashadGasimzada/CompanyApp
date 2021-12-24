@@ -59,33 +59,7 @@ namespace Repository.Implementations
 
         public bool Update(Employee entity)
         {
-            try
-            {
-                var employee = GetById(m => m.Id == entity.Id);
-
-                if (employee != null)
-                {
-                    if (!string.IsNullOrEmpty(entity.Name))
-                        employee.Name = entity.Name;
-
-                    if (!string.IsNullOrEmpty(entity.Surname))
-                        employee.Surname = entity.Surname;
-
-                    if ()
-
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-
-                return false;
-            }
+            throw new NotImplementedException();
         }
     }
 }

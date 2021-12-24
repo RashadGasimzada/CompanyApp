@@ -12,6 +12,6 @@ namespace Service.Services.Interfaces
         Employee GetById(int id);
         List<Employee> GetByAge(int Age);
         List<Employee> GetAllByCompanyId(int companyId);
-       
+   
     }
 }
