@@ -70,7 +70,7 @@ namespace CompanyApp.Controller
                 }
                 else
                 {
-                    Helper.WriteToConsole(ConsoleColor.Green, $"{company.Id} - {company.Name} - {company.Address}");
+                    Helper.WriteToConsole(ConsoleColor.Green, $"{company.Id} - {company.Name} in {company.Address}");
                 }
             }
             else
@@ -119,7 +119,7 @@ namespace CompanyApp.Controller
 
             foreach (var item in companies)
             {
-                Helper.WriteToConsole(ConsoleColor.Green, $"{item.Id} - {item.Name} - {item.Address}");
+                Helper.WriteToConsole(ConsoleColor.Green, $"{item.Id} - {item.Name} in {item.Address}");
             }
         }
 
@@ -137,19 +137,10 @@ namespace CompanyApp.Controller
             }
             else
             {
-                var companyNames = _companyServise.GetAll();
+                var companyNames = _companyServise.GetByName(companyName);
                 foreach (var item in companyNames)
-                {
-                    if (item.Name != companyName )
-                    {
-                        Helper.WriteToConsole(ConsoleColor.Red, "Company not found try again");
-                        goto EnterCompanyName;
-                        
-                    }
-                    else
-                    {
-                        Helper.WriteToConsole(ConsoleColor.Green, $"{item.Id} - {item.Name} - {item.Address}");
-                    }
+                {  
+                    Helper.WriteToConsole(ConsoleColor.Green, $"{item.Id} - {item.Name} in {item.Address}");  
                 }
             }
 

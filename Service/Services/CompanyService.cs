@@ -45,5 +45,10 @@ namespace Service.Services
             _companyRepository.Update(model);
             return model;
         }
+
+        public List<Company> GetByName(string name)
+        {
+            return _companyRepository.GetByName(m => m.Name == name);
+        }
     }
 }

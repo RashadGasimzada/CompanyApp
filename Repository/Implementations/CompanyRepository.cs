@@ -46,6 +46,11 @@ namespace Repository.Implementations
             return filter == null ? AppDbContext<Company>.datas[0] : AppDbContext<Company>.datas.Find(filter);
         }
 
+        public List<Company> GetByName(Predicate<Company> filter)
+        {
+            return filter == null ? AppDbContext<Company>.datas : AppDbContext<Company>.datas.FindAll(filter);
+        }
+
         public List<Company> GetAll(Predicate<Company> filter)
         {
             return filter == null ? AppDbContext<Company>.datas : AppDbContext<Company>.datas.FindAll(filter);

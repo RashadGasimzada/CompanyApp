@@ -54,7 +54,7 @@ namespace CompanyApp.Controller
 
                     if (createResult != null)
                     {
-                        Helper.WriteToConsole(ConsoleColor.Green, $"{employee.Id} - {employee.Name} - {employee.Surname} employee in {employee.Company.Name} created");
+                        Helper.WriteToConsole(ConsoleColor.Green, $"{employee.Id} - {employee.Name} {employee.Surname} employee in {employee.Company.Name} created");
                     }
                     else
                     {
@@ -92,7 +92,7 @@ namespace CompanyApp.Controller
                 }
                 else
                 {
-                    Helper.WriteToConsole(ConsoleColor.Green, $"{employee.Id} - {employee.Name} - {employee.Surname} works in {employee.Company.Name}");
+                    Helper.WriteToConsole(ConsoleColor.Green, $"{employee.Id} - {employee.Name} {employee.Surname} works in {employee.Company.Name}");
                 }
             }
             else
@@ -149,7 +149,7 @@ namespace CompanyApp.Controller
 
                 foreach (var item in employeeAges)
                 {
-                    Helper.WriteToConsole(ConsoleColor.Green, $"{item.Id} - {item.Name} - {item.Surname} works in {item.Company.Name}");
+                    Helper.WriteToConsole(ConsoleColor.Green, $"{item.Id} - {item.Name} {item.Surname} works in {item.Company.Name}");
                 }
             }
             else
@@ -174,7 +174,7 @@ namespace CompanyApp.Controller
 
                 foreach (var item in companysId)
                 {
-                    Helper.WriteToConsole(ConsoleColor.Green, $"{item.Id} - {item.Name} - {item.Surname}");
+                    Helper.WriteToConsole(ConsoleColor.Green, $"{item.Id} - {item.Name} {item.Surname} works in {item.Company.Name}");
                 }                
             }
             else
@@ -236,7 +236,7 @@ namespace CompanyApp.Controller
                         };
                         var newEmployee = _employeeServise.Update(id, employee, newCompany);
 
-                        Helper.WriteToConsole(ConsoleColor.Green, $"{newEmployee.Id} - {newEmployee.Name} - {newEmployee.Surname} works in {newEmployee.Company.Name} updated");
+                        Helper.WriteToConsole(ConsoleColor.Green, $"{newEmployee.Id} - {newEmployee.Name} {newEmployee.Surname} works in {newEmployee.Company.Name} updated");
                     }                                       
                 }
             }

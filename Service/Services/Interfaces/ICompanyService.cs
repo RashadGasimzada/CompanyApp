@@ -12,5 +12,6 @@ namespace Service.Services.Interfaces
         void Delete(Company company);
         Company GetById(int id);
         List<Company> GetAll();
+        List<Company> GetByName(string name);
     }
 }
